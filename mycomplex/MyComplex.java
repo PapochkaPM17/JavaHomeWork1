@@ -7,8 +7,7 @@ public class MyComplex {
     private double imag;
 
     public MyComplex() {
-        real = 0;
-        imag = 0;
+
     }
 
     public MyComplex(double real, double imag) {
@@ -87,7 +86,11 @@ public class MyComplex {
             setValue(Double.NaN, Double.NaN);
             return this;
         }
-        setValue((real * right.real + imag * right.imag)/(right.real * right.real + right.imag * right.imag), (real * right.imag - imag * right.real)/(right.real * right.real + right.imag * right.imag));
+
+	    double sumOfSquares = right.real * right.real + right.imag * right.imag;
+
+        setValue((real * right.real + imag * right.imag)/sumOfSquares,
+		        (real * right.imag - imag * right.real)/sumOfSquares);
         return this;
     }
 
