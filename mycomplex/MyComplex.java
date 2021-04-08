@@ -5,6 +5,7 @@ import java.util.Objects;
 public class MyComplex {
     private double real;
     private double imag;
+    private final double THRESHOLD = .000001;
 
     public MyComplex() {
 
@@ -37,11 +38,11 @@ public class MyComplex {
     }
 
     public boolean isReal() {
-        return imag == 0;
+        return Math.abs(imag) < THRESHOLD;
     }
 
     public boolean isImaginary() {
-        return real == 0;
+        return Math.abs(real) < THRESHOLD;
     }
 
     public double magnitude() {
@@ -49,7 +50,7 @@ public class MyComplex {
     }
 
     public double argument() {
-        if(real == 0 && imag == 0) {
+        if(Math.abs(imag) < THRESHOLD && Math.abs(real) < THRESHOLD) {
             return Double.NaN;
         } else {
             return Math.asin(imag/magnitude());
@@ -82,7 +83,7 @@ public class MyComplex {
     }
 
     public MyComplex divide(MyComplex right) {
-        if(right.real == 0 && right.imag == 0) {
+        if(Math.abs(right.imag) < THRESHOLD && Math.abs(right.real) < THRESHOLD) {
             setValue(Double.NaN, Double.NaN);
             return this;
         }
